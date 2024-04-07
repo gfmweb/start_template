@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-
+Route::get('/test',[\App\Http\Controllers\TS::class,'index']);
 
 Route::get('{any}', function () {
     return view('pages.index');

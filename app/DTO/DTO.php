@@ -1,7 +1,10 @@
 <?php
 
 namespace App\DTO;
-
+/**
+ * Родительский класс всех DTO
+ * Позволяет хранить исходный вариант объекта и лог его изменений
+ */
 class DTO
 {
     private bool $readonly;

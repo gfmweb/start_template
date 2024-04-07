@@ -6,6 +6,7 @@ export default {
     props: {roles: Array, token: String},
     data() {
         return {
+            roleName:'',
             activeRole: {
                 id: null,
                 name: null

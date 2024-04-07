@@ -5,6 +5,9 @@ namespace App\DTO;
 use App\Models\Log;
 use Illuminate\Database\Eloquent\Collection;
 
+/**
+ * Логи
+ */
 class LogDTO extends DTO
 {
     public int $id;

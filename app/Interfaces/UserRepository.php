@@ -23,4 +23,8 @@ interface UserRepository
 
     public function getAllUsers(): array;
 
+    public function updateUserPassword(int $user_id, string $password):void;
+
+    public function updateContacts(int $user_id, array $contacts):void;
+
 }

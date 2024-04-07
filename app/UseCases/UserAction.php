@@ -21,5 +21,24 @@ class UserAction
         $repository = app(UserRepository::class);
         $repository->deleteUser($id);
         $repository = app(RoleUserRepositorry::class);
+        $repository->userDelete($id);
+    }
+
+    public static function updateUserPassword(array $data, string $token): null |\Exception
+    {
+        $repository = app(UserRepository::class);
+        $user =  $repository->getUserByToken($token);
+        if(!Hash::check($data['current_password'], $user->password)){
+            throw new \Exception('Текущий пароль введен не верно');
+        }
+        $repository->updateUserPassword($user->id, Hash::make($data['password']));
+        return null;
+    }
+
+    public static function updateContacts(array $data, string $token): void
+    {
+        $repository = app(UserRepository::class);
+        $user =  $repository->getUserByToken($token);
+        $repository->updateContacts($user->id, $data);
     }
 }

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('phones', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(\App\Models\User::class);
-            $table->bigInteger('phone');
+            $table->bigInteger('phone')->nullable();
             $table->timestamps();
         });
     }

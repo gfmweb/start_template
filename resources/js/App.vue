@@ -47,7 +47,7 @@ export default {
 
         },
         logout(){
-            console.log('logout')
+
             this.user.Name = null
             this.user.Login = null
             this.user.Token = null
@@ -59,6 +59,13 @@ export default {
             localStorage.removeItem('user')
             this.keyIndex++
 
+        },
+        refreshUser(data)
+        {
+            this.user.Phone = data.phone
+            this.user.Email = data.email
+            this.user.Telegram = data.telegram
+            this.keyIndex++
         }
     },
     mounted(){
@@ -70,7 +77,12 @@ export default {
 <template>
     <router-view v-slot="{ Component }" class="content">
         <transition name="fade">
-            <component :is="Component" :user="this.user" :keyIndex="this.keyIndex" v-on:login="login" v-on:logout="logout"/>
+            <component :is="Component"
+                       :user="this.user"
+                       :keyIndex="this.keyIndex"
+                       v-on:refreshUser="refreshUser"
+                       v-on:login="login"
+                       v-on:logout="logout"/>
         </transition>
     </router-view>
 </template>

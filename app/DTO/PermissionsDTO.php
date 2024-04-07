@@ -4,12 +4,16 @@ namespace App\DTO;
 
 use App\DTO\DTO;
 use \Illuminate\Database\Eloquent\Collection;
-
+/**
+ *
+ * Проверка разрешений действия для роли
+ */
 class PermissionsDTO extends DTO
 {
     public int $action_id;
     public string $name;
     public bool $permission;
+
 
     private function __construct(array $data, bool $readonly = false)
     {

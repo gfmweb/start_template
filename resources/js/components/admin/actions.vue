@@ -29,7 +29,7 @@ export default {
 
 <template>
     <div>
-    <table class="table table-bordered" v-if="this.actions.length > 0">
+    <table class="table table-bordered" >
         <thead class="text-center">
             <tr>
                 <th colspan="3">Действия</th>
@@ -45,7 +45,7 @@ export default {
                 <td>{{index+1}}</td>
                 <td>{{item.action}}</td>
                 <td class="text-center">
-                    <bitton class="btn btn-danger btn-sm" v-on:click="ConfirmDeleteAction(item)">Удалить</bitton>
+                    <button class="btn btn-danger btn-sm" v-on:click="ConfirmDeleteAction(item)">Удалить</button>
                 </td>
             </tr>
         </tbody>

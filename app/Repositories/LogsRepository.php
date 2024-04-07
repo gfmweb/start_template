@@ -13,7 +13,6 @@ class LogsRepository implements LogService
     public function getLogsByUserId(int $userId)
     {
         $ModelData = Log::where('user_id', $userId)->get();
-        return $ModelData;
         return LogDTO::makeFromCollection($ModelData);
     }
 

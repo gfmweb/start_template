@@ -29,7 +29,6 @@ class LoginRegisterLogout
         $rememberToken = Hash::make($token);
         $dbUser->token = $token;
         $dbUser->rememberToken = $rememberToken;
-        $dbUser->roles = $dbUser->roles;
         $repository->updateUser($dbUser);
         return $dbUser;
     }

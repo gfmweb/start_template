@@ -6,6 +6,9 @@ use App\DTO\DTO;
 use App\Models\Role;
 use Illuminate\Database\Eloquent\Collection;
 
+/**
+ * Роли пользователей
+ */
 class RoleDTO extends DTO
 {
     public int $id;

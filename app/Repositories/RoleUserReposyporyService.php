@@ -37,7 +37,6 @@ class RoleUserReposyporyService implements RoleUserRepositorry
 
     public function getRolePermissions(array $roles_id, int $action_id): array
     {
-        $DBData = Permission::whereIn('role_id', $roles_id)->where('action_id', $action_id)->get()->toArray();
-        return $DBData;
+        return Permission::whereIn('role_id', $roles_id)->where('action_id', $action_id)->get()->toArray();
     }
 }

@@ -6,6 +6,9 @@ use App\DTO\DTO;
 use App\Models\Action;
 use Illuminate\Database\Eloquent\Collection;
 
+/**
+ * Действия по которым можно осуществлять проверку правомерности доступа
+ */
 class ActionsDTO extends DTO
 {
     public int $id;

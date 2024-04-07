@@ -4,6 +4,7 @@ use App\Http\Controllers\API\LoginController;
 use App\Http\Controllers\API\Admin\AdminController;
 use App\Http\Middleware\AdminAccessMiddleware;
 use App\Http\Controllers\API\LkController;
+use App\Http\Controllers\API\UserController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -36,6 +37,10 @@ Route::prefix('v1')->group(function(){
       Route::get('getActions',[AdminController::class,'getActions']);
       Route::post('deleteAction',[AdminController::class,'deleteAction']);
       Route::post('addAction',[AdminController::class,'addAction']);
+   });
+   Route::prefix('user')->group(function(){
+      Route::post('changePassword',[UserController::class,'changePassword']);
+      Route::post('updateContacts',[UserController::class,'updateContacts']);
    });
 
 });

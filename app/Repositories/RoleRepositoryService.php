@@ -16,14 +16,12 @@ class RoleRepositoryService implements RoleRepository
         return RoleDTO::makeFromCollection(Role::all());
     }
 
-    public function addRole(string $role): array
+    public function addRole(string $role): int
     {
         $role = Role::create([
             'role' => $role
         ]);
-        $repository = app(RoleUserRepositorry::class);
-        $repository->addUserRole(1, $role->id);
-        return $this->getAllRoles();
+        return $role->id;
     }
 
     public function renameRole(int $id, string $role): array
@@ -32,13 +30,8 @@ class RoleRepositoryService implements RoleRepository
         return $this->getAllRoles();
     }
 
-    public function deleteRole(int $id): array
+    public function deleteRole(int $id): void
     {
         Role::destroy($id);
-        $repository = app(RoleUserRepositorry::class);
-        $repository->roleDelete($id);
-        $repository = app(PermissionsRepository::class);
-        $repository->removeDeleteRolePermissions($id);
-        return $this->getAllRoles();
     }
 }

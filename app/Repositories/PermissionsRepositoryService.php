@@ -6,16 +6,14 @@ use App\DTO\PermissionsDTO;
 use App\Interfaces\ActionRepository;
 use App\Interfaces\PermissionsRepository;
 use App\Models\Permission;
+use Illuminate\Database\Eloquent\Collection;
 
 class PermissionsRepositoryService implements PermissionsRepository
 {
 
-    public function getPermissions(int $role_id): array
+    public function getPermissions(int $role_id): Collection
     {
-        $actionsRepository = app(ActionRepository::class);
-        $actions = $actionsRepository->getActions();
-        $permissions = Permission::where('role_id', $role_id)->get();
-        return PermissionsDTO::makeFromCollections($actions, $permissions, $role_id);
+        return Permission::where('role_id', $role_id)->get();
     }
 
     public function changePermission(int $action_id, int $role_id, bool $granted)

@@ -6,6 +6,9 @@ use App\DTO\DTO;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
 
+/**
+ * Пользователь
+ */
 class UserDTO extends DTO
 {
 

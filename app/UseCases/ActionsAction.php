@@ -3,6 +3,7 @@
 namespace App\UseCases;
 
 use App\Interfaces\ActionRepository;
+use App\Interfaces\PermissionsRepository;
 
 class ActionsAction
 {
@@ -16,6 +17,8 @@ class ActionsAction
     {
         $repository = app(ActionRepository::class);
         $repository->deleteAction($id);
+        $repository = app(PermissionsRepository::class);
+        $repository-> removeDeleteActionPermissions($id);
     }
 
     public static function addAction(string $action): void
