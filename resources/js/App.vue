@@ -17,7 +17,6 @@ const FB = initializeApp(firebaseConfig);
 const messaging = getMessaging(FB);
 
 onMessage(messaging, (payload) => {
-    console.log(payload.notification);
     document.getElementById('payloadPush').innerText = JSON.stringify(payload.notification)
 });
 
