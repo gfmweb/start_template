@@ -22,6 +22,7 @@ Route::prefix('v1')->group(function(){
    Route::post('register',[LoginController::class,'register']);
    Route::post('changePassword',[LoginController::class,'changePassword']);
    Route::get('action',[LkController::class,'index']);
+   Route::post('FireBase',[UserController::class,'fireBaseAddToken']);
 
    Route::prefix('admin')->middleware(AdminAccessMiddleware::class)->group(function(){
       Route::get('getRoles',[AdminController::class,'getRoles']);

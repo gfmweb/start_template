@@ -173,7 +173,8 @@ return [
         App\Providers\RoleProvider::class,
         App\Providers\RoleUserProvider::class,
         App\Providers\ActionRepositoryProvider::class,
-        App\Providers\PermissionsProvider::class
+        App\Providers\PermissionsProvider::class,
+        App\Providers\FirebaseProvider::class
     ])->toArray(),
 
     /*

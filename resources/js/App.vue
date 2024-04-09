@@ -1,4 +1,44 @@
 <script>
+import {initializeApp} from "firebase/app";
+import { getMessaging, getToken, onMessage } from "firebase/messaging";
+// Initialize Firebase
+const firebaseConfig = {
+    apiKey: "AIzaSyAnwYFowEGblqEUStZw3SE-1nratZh-boM",
+    authDomain: "nactapusher.firebaseapp.com",
+    projectId: "nactapusher",
+    storageBucket: "nactapusher.appspot.com",
+    messagingSenderId: "499274020108",
+    appId: "1:499274020108:web:8e25818792c697b72c0529"
+};
+const FB = initializeApp(firebaseConfig);
+//
+
+const messaging = getMessaging();
+onMessage(messaging, (payload) => {
+    console.log('А вот мы получили пуш когда страница в фокусе '+payload.notification.body)
+    localStorage.setItem('Message', JSON.stringify(payload.notification));
+});
+(async () => {
+    try {
+        Notification.requestPermission().then(function(permission) {
+            if (permission === 'granted') {
+                getToken(messaging, { vapidKey: 'BHWxAyV9tsswoOgDkmgArYEwv8yw9JJtTMkf2b0kJt-J4570pm-mNNE3tf4ffl3N3SKxeQtaBfwvQY2HgvmQvk4' }).then((currentToken) => {
+                    if (currentToken) {
+                        localStorage.setItem('firebase',currentToken)
+                    } else {
+                        console.log('Нет активного разрешения необходимо перезапросить');
+                    }
+                }).catch((err) => {
+                    console.log(err)
+                });
+            }
+        });
+    } catch (error) {
+        console.log(error)
+    }
+})();
+
+
 export default {
     name: "App",
     data(){
@@ -22,10 +62,7 @@ export default {
         {
             let localData = JSON.parse(localStorage.getItem('user'))
             if(
-                localData.Name !== undefined &&
-                localData.Login !== undefined &&
-                localData.UserToken !== undefined &&
-                localData.RefreshToken !== undefined
+                localData !== null
             ){
                 this.user = localData
                 this.keyIndex++

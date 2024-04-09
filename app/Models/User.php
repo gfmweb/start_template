@@ -42,6 +42,11 @@ class User extends Authenticatable
         return $this->HasMany(RoleUser::class);
     }
 
+    public function firebase():HasOne
+    {
+        return $this->HasOne(FireBase::class);
+    }
+
 
 
 }

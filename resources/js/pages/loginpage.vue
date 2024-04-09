@@ -9,6 +9,8 @@ export default {
     name: "loginpage",
     data() {
         return {
+            FireBase:null,
+            loading:false,
             passwordMode: 'password',
             login: '',
             password: ''
@@ -19,13 +21,15 @@ export default {
             this.passwordMode = (this.passwordMode == 'password') ? 'text' : 'password'
         },
         submitLogin() {
+            this.loading = true
             axios.post('/api/v1/login', {login: this.login, password: this.password})
                 .then(res => {
                     this.$emit('login', res.data)
                     this.$router.push('/lk')
                 })
                 .catch(error => {
-                    console.log(error.response.data)
+
+                    this.loading = false
                 })
 
         },
@@ -75,7 +79,12 @@ export default {
                                 </div>
                                 <div class="card-footer text-center">
                                     <button class="btn  rounded-3 btn-primary" type="submit">
-                                        Войти
+                                        <div class="spinner-border text-light small" role="status"
+                                             v-if="this.loading == true"
+                                        >
+                                            <span class="visually-hidden">Loading...</span>
+                                        </div>
+                                        <span v-else >Войти</span>
                                     </button>
                                 </div>
                             </form>

@@ -27,4 +27,6 @@ interface UserRepository
 
     public function updateContacts(int $user_id, array $contacts):void;
 
+
+
 }

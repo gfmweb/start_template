@@ -28,6 +28,7 @@ class RolesAction
     public static function deleteRole(int $id): array
     {
         $repositoryRole = app(RoleRepository::class);
+        $repositoryRole->deleteRole($id);
         $repository = app(RoleUserRepositorry::class);
         $repository->roleDelete($id);
         $repository = app(PermissionsRepository::class);

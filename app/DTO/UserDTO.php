@@ -19,6 +19,7 @@ class UserDTO extends DTO
     public string|null $email;
     public int|null $telegram;
     public int|null $phone;
+    public string|null $firebase;
     public $roles;
     public string|null $token;
     public string|null $rememberToken;
@@ -33,6 +34,7 @@ class UserDTO extends DTO
         $this->password = $data['password'] ?? '';
         $this->email = $data['email'];
         $this->telegram = $data['telegram'];
+        $this->firebase = $data['firebase'];
         $this->phone = $data['phone'];
         $this->roles = $data['roles'];
         $this->token = $data['token'] ?? '';
@@ -49,6 +51,7 @@ class UserDTO extends DTO
             'email' => $user->email->email ?? null,
             'phone' => $user->phone->phone ?? null,
             'telegram' => $user->telegram->telegram ?? null,
+            'firebase' => $user->firebase->firebase ?? null,
             'roles' => $user->roles ?? null,
             'token' => $user->token ?? null,
             'rememberToken' => $user->rememberToken ?? null,
@@ -67,6 +70,7 @@ class UserDTO extends DTO
                 'email' => $user->email->email ?? null,
                 'phone' => $user->phone->phone ?? null,
                 'telegram' => $user->telegram->telegram ?? null,
+                'firebase' => $user->firebase->firebase ?? null,
                 'roles' => $user->roles ?? null,
                 'token' => $user->token ?? null,
                 'rememberToken' => $user->rememberToken ?? null,
@@ -98,6 +102,7 @@ class UserDTO extends DTO
             'phone' => $user->phone,
             'email' => $user->email,
             'telegram' => $user->telegram,
+            'firebase' => $user->firebase,
             'roles' => $user->roles,
             'token' => $user->token,
             'refreshToken' => $user->rememberToken
@@ -111,6 +116,7 @@ class UserDTO extends DTO
             'name' => $user->name,
             'login' => $user->login,
             'phone' => $user->phone,
+            'firebase' => $user->firebase,
             'email' => $user->email,
             'telegram' => $user->telegram,
             'roles' => $user->roles,
@@ -128,6 +134,7 @@ class UserDTO extends DTO
             'phone' => $user->phone,
             'email' => $user->email,
             'telegram' => $user->telegram,
+            'firebase' => $user->firebase,
             'roles' => $user->roles,
             'token' => $user->token,
             'refreshToken' => $user->rememberToken
