@@ -2,12 +2,7 @@
 export default {
     props:{notis:Object, modeNoti:String},
     name: "notifier",
-    methods:{
-        clear(){
-            this.$emit('clear')
-        }
 
-    }
 }
 </script>
 
@@ -15,7 +10,6 @@ export default {
     <div :class="'alert alert-'+modeNoti+' alert-dismissible fade show'" role="alert">
         <img :src="notis.icon" class="img-fluid" style="max-width: 32px">&nbsp;
         <strong>{{notis.title}}</strong> {{notis.body}}
-
     </div>
 </template>
 
