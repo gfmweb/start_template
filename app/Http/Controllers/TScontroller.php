@@ -15,12 +15,16 @@ class TScontroller extends Controller
 {
     public function index(Request $request, UserRepository $repository):JsonResponse
     {
-        $userRep = app(UserRepository::class);
-        $user = $userRep->getUserByToken($request->bearerToken());
-        FireBase::sendPush(
-            $user->firebase,
-            'Текущее время сервера '. Carbon::now()->format('H:i:s'),'Тестовое сообщение'
-        );
-        return response()->json(null,204,[],256);
+        try {
+            $userRep = app(UserRepository::class);
+            $user = $userRep->getUserByToken($request->bearerToken());
+            FireBase::sendPush(
+                $user->firebase,
+                'Текущее время сервера ' . Carbon::now()->format('H:i:s'), 'Тестовое сообщение'
+            );
+            return response()->json(null, 204, [], 256);
+        }catch (\Exception $exception){
+            return response()->json('Не отправлено', 422, [], 256);
+        }
     }
 }

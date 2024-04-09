@@ -26,7 +26,10 @@ export default {
     name: "App",
     data() {
         return {
-            message:{},
+            message:{
+                title:null,
+                body:null
+            },
             keyIndex: 0,
             user: {
                 Name: null,
