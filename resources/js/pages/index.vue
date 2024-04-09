@@ -52,7 +52,7 @@ export default {
                 </div>
             </div>
             <button class="btn btn-outline-primary "  v-on:click="getPush">Получить пуш в фокусе</button>
-            <p>получено сообщение {{this.message}}</p>
+
             <p>Для получения уведомления в backgroud сверните(но не закрывайте)  браузер. Отправьте POST запрос '/api/v1/FireBaseGetMessage' c BearerToken:<br/>
             {{this.user.Token}}</p>
         </section>
