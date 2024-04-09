@@ -37,7 +37,7 @@ class UserController extends Controller
     {
         try{
             FireBaseActions::AddUpdateFireBase($request->bearerToken(),$request->get('firebase'));
-            return response()->json('Токен успешно сохранён',201,[],200);
+            return response()->json('Токен успешно сохранён',201,[],256);
         }catch (\Exception $exception){
             return response()->json($exception->getMessage(),422,[],256);
         }
