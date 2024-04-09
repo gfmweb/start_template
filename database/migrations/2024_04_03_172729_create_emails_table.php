@@ -14,8 +14,7 @@ return new class extends Migration
         Schema::create('emails', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(\App\Models\User::class);
-            $table->string('email')->nullable();
-            $table->timestamps();
+            $table->string('email')->unique();
         });
     }
 

@@ -2,7 +2,11 @@
 
 namespace App\UseCases;
 
+use App\DTO\UserDTO;
+use App\Interfaces\EmailRepository;
+use App\Interfaces\PhoneRepository;
 use App\Interfaces\RoleUserRepositorry;
+use App\Interfaces\TelegramRepository;
 use App\Interfaces\UserRepository;
 use Illuminate\Support\Facades\Hash;
 
@@ -39,6 +43,35 @@ class UserAction
     {
         $repository = app(UserRepository::class);
         $user =  $repository->getUserByToken($token);
-        $repository->updateContacts($user->id, $data);
+        $telegram = app(TelegramRepository::class);
+        $telegram->addOrUpdateTelegram($user->id,$data['telegram']);
+        $email = app(EmailRepository::class);
+        $email->addOrUpdateEmail($user->id,$data['email']);
+        $phone = app(PhoneRepository::class);
+        $phone->addOrUpdatePhone($user->id,$data['phone']);
+    }
+
+    public static function getUserByPhone(int $phone) : ?UserDTO
+    {
+        $phoneRepository = app(PhoneRepository::class);
+        $user_id = $phoneRepository->getUserIdByPhone($phone);
+        if(is_int($user_id))
+        {
+            $userRepository = app(UserRepository::class);
+            return $userRepository->getUserById($user_id);
+        }
+        return null;
+    }
+
+    public static function getUserByEmail(string $email) : ?UserDTO
+    {
+        $emailRepository = app(EmailRepository::class);
+        $user_id = $emailRepository->getUserIdByEmail($email);
+        if(is_int($user_id))
+        {
+            $userRepository = app(UserRepository::class);
+            return $userRepository->getUserById($user_id);
+        }
+        return null;
     }
 }

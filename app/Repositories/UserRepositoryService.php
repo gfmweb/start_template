@@ -96,22 +96,7 @@ class UserRepositoryService implements UserRepository
         User::where('id', $user_id)->update(['password' => $password]);
     }
 
-    public function updateContacts(int $user_id, array $contacts): void
-    {
-        Telegram::updateOrCreate(
-            ['user_id' => $user_id],
-            ['telegram' => $contacts['telegram']]
-        );
-        Phone::updateOrCreate(
-            ['user_id' => $user_id],
-            ['phone' => $contacts['phone']]
-        );
-        Email::updateOrCreate(
-            ['user_id' => $user_id],
-            ['email' => $contacts['email']]
-        );
 
-    }
 
 
 }

@@ -5,6 +5,7 @@ use App\Http\Controllers\API\Admin\AdminController;
 use App\Http\Middleware\AdminAccessMiddleware;
 use App\Http\Controllers\API\LkController;
 use App\Http\Controllers\API\UserController;
+use App\Http\Controllers\API\SimpleActionController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -23,6 +24,8 @@ Route::prefix('v1')->group(function(){
    Route::post('changePassword',[LoginController::class,'changePassword']);
    Route::get('action',[LkController::class,'index']);
    Route::post('FireBase',[UserController::class,'fireBaseAddToken']);
+   Route::post('FireBaseGetMessage',[\App\Http\Controllers\TScontroller::class,'index']);
+   Route::get('action/{number}',[SimpleActionController::class,'reception']);
 
    Route::prefix('admin')->middleware(AdminAccessMiddleware::class)->group(function(){
       Route::get('getRoles',[AdminController::class,'getRoles']);

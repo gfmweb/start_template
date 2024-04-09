@@ -9,4 +9,5 @@ class Email extends Model
 {
     use HasFactory;
     protected $fillable = ['email','user_id'];
+    public $timestamps = false;
 }

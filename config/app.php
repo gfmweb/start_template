@@ -174,7 +174,10 @@ return [
         App\Providers\RoleUserProvider::class,
         App\Providers\ActionRepositoryProvider::class,
         App\Providers\PermissionsProvider::class,
-        App\Providers\FirebaseProvider::class
+        App\Providers\FirebaseProvider::class,
+        App\Providers\PhoneRepositoryProvider::class,
+        App\Providers\EmailRepositoryProvider::class,
+        App\Providers\TelegramRepositoryProvider::class
     ])->toArray(),
 
     /*

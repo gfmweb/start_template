@@ -9,4 +9,5 @@ class Telegram extends Model
 {
     use HasFactory;
     protected $fillable = ['telegram','user_id'];
+    public $timestamps = false;
 }
