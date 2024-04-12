@@ -18,7 +18,7 @@ class ActionsAction
         $repository = app(ActionRepository::class);
         $repository->deleteAction($id);
         $repository = app(PermissionsRepository::class);
-        $repository-> removeDeleteActionPermissions($id);
+        $repository->removeDeleteActionPermissions($id);
     }
 
     public static function addAction(string $action): void

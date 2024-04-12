@@ -2,8 +2,9 @@
 
 namespace App\DTO;
 
-use App\DTO\DTO;
+
 use \Illuminate\Database\Eloquent\Collection;
+
 /**
  *
  * Проверка разрешений действия для роли

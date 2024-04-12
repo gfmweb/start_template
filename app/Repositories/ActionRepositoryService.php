@@ -34,6 +34,6 @@ class ActionRepositoryService implements ActionRepository
     public function getActionByName(string $name): ActionsDTO|null
     {
         $action = Action::where('action', $name)->first();
-        return ($action)?  ActionsDTO::makeFromModel($action):null;
+        return ($action) ? ActionsDTO::makeFromModel($action) : null;
     }
 }

@@ -2,7 +2,7 @@
 
 namespace App\DTO;
 
-use App\DTO\DTO;
+
 use App\Models\Role;
 use Illuminate\Database\Eloquent\Collection;
 

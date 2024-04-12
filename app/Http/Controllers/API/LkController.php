@@ -10,16 +10,11 @@ use Illuminate\Support\Facades\Http;
 
 class LkController extends Controller
 {
-    public function index(Request $request):JsonResponse
+    public function index(Request $request): JsonResponse
     {
-        if(!PermissionCheck::checkPermission($request->bearerToken(),'Действие_1'))
-        return response()->json('Не достаточно прав',403,[],256);
-        return response()->json('Всё в порядке',200,[],256);
+        if (!PermissionCheck::checkPermission($request->bearerToken(), 'Действие_1'))
+            return response()->json('Не достаточно прав', 403, [], 256);
+        return response()->json('Всё в порядке', 200, [], 256);
     }
 
-    public function firebase()
-    {
-       $req =  Http::get('http://localhost:8001/api/test');
-       return response()->json($req->body());
-    }
 }

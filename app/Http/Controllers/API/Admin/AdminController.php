@@ -15,6 +15,7 @@ use App\UseCases\PermissionsAction;
 use App\UseCases\RolesAction;
 use App\UseCases\RoleUserAction;
 use App\UseCases\UserAction;
+use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -24,8 +25,8 @@ class AdminController extends Controller
     {
         try {
             $repository = app(UserRepository::class);
-            return response()->json($repository->getAllUsers(),200,[],256);
-        } catch (\Exception $exception) {
+            return response()->json($repository->getAllUsers(), 200, [], 256);
+        } catch (Exception $exception) {
             return response()->json(["message" => $exception->getMessage()], 422);
         }
     }
@@ -34,7 +35,7 @@ class AdminController extends Controller
     {
         try {
             return response()->json(RolesAction::getAllRoles(), 200, [], 256);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return response()->json(["message" => $e->getMessage()], 422);
         }
     }
@@ -44,7 +45,7 @@ class AdminController extends Controller
         try {
             RoleUserAction::removeUserRole($request->get('user_id'), $request->get('role_id'));
             return response()->json(null, 204, [], 256);
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             return response()->json(["message" => $exception->getMessage()], 422);
         }
     }
@@ -53,7 +54,7 @@ class AdminController extends Controller
     {
         try {
             return response()->json(UserAction::dropUserPassword($request->get('id')), 200, [], 256);
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             return response()->json(null, 422, $exception->getMessage());
         }
     }
@@ -62,7 +63,7 @@ class AdminController extends Controller
     {
         try {
             return response()->json(UserAction::deleteUser($request->get('id')), 204, [], 256);
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             return response()->json(null, 422, $exception->getMessage());
         }
     }
@@ -73,7 +74,7 @@ class AdminController extends Controller
         try {
             RoleUserAction::addUserRole($request->get('user_id'), $request->get('role_id'));
             return response()->json(null, 201, [], 256);
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             return response()->json(null, 422, $exception->getMessage());
         }
     }
@@ -82,7 +83,7 @@ class AdminController extends Controller
     {
         try {
             return response()->json(RolesAction::newRoleAdd($request->get('role')), 201, [], 256);
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             return response()->json(null, 422, $exception->getMessage());
         }
     }
@@ -91,7 +92,7 @@ class AdminController extends Controller
     {
         try {
             return response()->json(RolesAction::deleteRole($request->get('id')), 200, [], 256);
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             return response()->json(null, 422, $exception->getMessage());
         }
     }
@@ -99,8 +100,8 @@ class AdminController extends Controller
     public function getPermissions(Request $request): JsonResponse
     {
         try {
-            return response()->json(PermissionsAction::getPermissions((int)$request->get('role_id')),200,[],256);
-        } catch (\Exception $e) {
+            return response()->json(PermissionsAction::getPermissions((int)$request->get('role_id')), 200, [], 256);
+        } catch (Exception $e) {
             return response()->json(null, 500, $e->getMessage());
         }
     }
@@ -110,8 +111,18 @@ class AdminController extends Controller
         try {
             PermissionsAction::changePermissions($request->get('action_id'), $request->get('role_id'), $request->get('granted'));
             return response()->json(null, 200, [], 256);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return response()->json($e->getMessage(), 500);
+        }
+    }
+
+    public function deleteAction(DeleteActionRequest $request): JsonResponse
+    {
+        try {
+            ActionsAction::deleteAction($request->get('id'));
+            return $this->getActions();
+        } catch (Exception $e) {
+            return response()->json(null, 500, $e->getMessage());
         }
     }
 
@@ -119,18 +130,8 @@ class AdminController extends Controller
     {
         try {
             return response()->json(ActionsAction::getActions(), 200, [], 256);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return response()->json($e->getMessage(), 500);
-        }
-    }
-
-    public function deleteAction(DeleteActionRequest $request):JsonResponse
-    {
-        try {
-            ActionsAction::deleteAction($request->get('id'));
-            return $this->getActions();
-        } catch (\Exception $e) {
-            return response()->json(null, 500, $e->getMessage());
         }
     }
 
@@ -139,7 +140,7 @@ class AdminController extends Controller
         try {
             ActionsAction::addAction($request->get('action'));
             return $this->getActions();
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return response()->json(null, 500, $e->getMessage());
         }
     }

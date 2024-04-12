@@ -13,37 +13,34 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function updateContacts(UpdateUserContactsRequest $request)
+    public function updateContacts(UpdateUserContactsRequest $request): JsonResponse
     {
-        try{
-            UserAction::updateContacts($request->all(),$request->bearerToken());
-            return response()->json(null,200,[],200);
-        }catch (\Exception $exception){
-            return response()->json($exception->getMessage(),422,[],256);
+        try {
+            UserAction::updateContacts($request->all(), $request->bearerToken());
+            return response()->json(null, 200, [], 200);
+        } catch (\Exception $exception) {
+            return response()->json($exception->getMessage(), 422, [], 256);
         }
     }
 
-    public function changePassword(UserChangePasswordRequest $request):JsonResponse
+    public function changePassword(UserChangePasswordRequest $request): JsonResponse
     {
-        try{
-           UserAction::updateUserPassword($request->all(),$request->bearerToken());
-           return response()->json(null,200,[],200);
-        }catch (\Exception $exception){
-            return response()->json($exception->getMessage(),422,[],256);
+        try {
+            UserAction::updateUserPassword($request->all(), $request->bearerToken());
+            return response()->json(null, 200, [], 200);
+        } catch (\Exception $exception) {
+            return response()->json($exception->getMessage(), 422, [], 256);
         }
     }
 
-    public function fireBaseAddToken(Request $request)
+    public function fireBaseAddToken(Request $request): JsonResponse
     {
-        try{
-            FireBaseActions::AddUpdateFireBase($request->bearerToken(),$request->get('firebase'));
-            return response()->json('Токен успешно сохранён',201,[],256);
-        }catch (\Exception $exception){
-            return response()->json($exception->getMessage(),422,[],256);
+        try {
+            FireBaseActions::AddUpdateFireBase($request->bearerToken(), $request->get('firebase'));
+            return response()->json('Токен успешно сохранён', 201, [], 256);
+        } catch (\Exception $exception) {
+            return response()->json($exception->getMessage(), 422, [], 256);
         }
 
     }
-
-
-
 }

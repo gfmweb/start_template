@@ -18,6 +18,6 @@ class EmailRepositoryService implements EmailRepository
 
     public function getUserIdByEmail(string $email): ?int
     {
-      return Email::select('user_id')->where('email', $email)->first()->user_id;
+        return Email::select('user_id')->where('email', $email)->first()->user_id;
     }
 }

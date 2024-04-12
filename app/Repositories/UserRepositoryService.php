@@ -31,28 +31,28 @@ class UserRepositoryService implements UserRepository
 
     public function getUserById(int $id): UserDTO
     {
-        $user = User::findOrFail($id)->load(['phone', 'email', 'telegram', 'roles','firebase']);
+        $user = User::findOrFail($id)->load(['phone', 'email', 'telegram', 'roles', 'firebase']);
         $user = $this->buildRoles($user);
         return UserDTO::makeFromModel($user);
     }
 
     public function getUserByLogin(string $login): UserDTO
     {
-        $user = User::where('login', $login)->firstOrFail()->load(['phone', 'email', 'telegram', 'roles','firebase']);
+        $user = User::where('login', $login)->firstOrFail()->load(['phone', 'email', 'telegram', 'roles', 'firebase']);
         $user = $this->buildRoles($user);
         return UserDTO::makeFromModel($user);
     }
 
     public function getUserByToken(string $token): UserDTO
     {
-        $user = User::where('token', $token)->firstOrFail()->load(['phone', 'email', 'telegram', 'roles','firebase']);
+        $user = User::where('token', $token)->firstOrFail()->load(['phone', 'email', 'telegram', 'roles', 'firebase']);
         $user = $this->buildRoles($user);
         return UserDTO::makeFromModel($user);
     }
 
     public function getUserByRefreshToken(string $refreshToken): UserDTO
     {
-        $user = User::where('refreshToken', $refreshToken)->firstOrFail()->load(['phone', 'email', 'telegram', 'roles','firebase']);
+        $user = User::where('refreshToken', $refreshToken)->firstOrFail()->load(['phone', 'email', 'telegram', 'roles', 'firebase']);
         $user = $this->buildRoles($user);
         return UserDTO::makeFromModel($user);
     }
@@ -84,7 +84,7 @@ class UserRepositoryService implements UserRepository
 
     public function getAllUsers(): array
     {
-        $users = User::all()->load(['phone', 'email', 'telegram', 'roles','firebase']);
+        $users = User::all()->load(['phone', 'email', 'telegram', 'roles', 'firebase']);
         for ($i = 0, $iMax = count($users); $i < $iMax; $i++) {
             $users[$i] = self::buildRoles($users[$i]);
         }
@@ -95,8 +95,6 @@ class UserRepositoryService implements UserRepository
     {
         User::where('id', $user_id)->update(['password' => $password]);
     }
-
-
 
 
 }

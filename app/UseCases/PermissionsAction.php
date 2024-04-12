@@ -20,7 +20,7 @@ class PermissionsAction
     public static function changePermissions(int $action_id, int $role_id, bool $granted): void
     {
         $provider = app(PermissionsRepository::class);
-        $provider-> changePermission($action_id, $role_id, $granted );
+        $provider->changePermission($action_id, $role_id, $granted);
     }
 
 

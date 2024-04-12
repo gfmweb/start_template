@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Auth;
 class TScontroller extends Controller
 {
 
-    public function index(Request $request, UserRepository $repository):JsonResponse
+    public function index(Request $request): JsonResponse
     {
 
         try {
@@ -25,13 +25,13 @@ class TScontroller extends Controller
                 'Текущее время сервера ' . Carbon::now()->format('H:i:s'), 'Тестовое сообщение'
             );
             return response()->json(null, 204, [], 256);
-        }catch (\Exception $exception){
+        } catch (\Exception $exception) {
             return response()->json('Не отправлено', 422, [], 256);
         }
     }
 
-    public function APIaction(Request $request):JsonResponse
+    public function APIaction(Request $request): JsonResponse
     {
-        return response()->json([$request->all(),$request->bearerToken()], 200);
+        return response()->json([$request->all(), $request->bearerToken()], 200);
     }
 }

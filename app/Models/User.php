@@ -22,31 +22,30 @@ class User extends Authenticatable
         'rememberToken'
     ];
 
-    public function email():HasOne
+    public function email(): HasOne
     {
         return $this->HasOne(Email::class);
     }
 
-    public function phone():HasOne
+    public function phone(): HasOne
     {
         return $this->HasOne(Phone::class);
     }
 
-    public function telegram():HasOne
+    public function telegram(): HasOne
     {
         return $this->HasOne(Telegram::class);
     }
 
-    public function roles():HasMany
+    public function roles(): HasMany
     {
         return $this->HasMany(RoleUser::class);
     }
 
-    public function firebase():HasOne
+    public function firebase(): HasOne
     {
         return $this->HasOne(FireBase::class);
     }
-
 
 
 }

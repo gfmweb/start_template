@@ -14,6 +14,6 @@ interface RoleUserRepositorry
 
     public function roleDelete(int $role_id): void;
 
-    public function getRolePermissions(array $roles_id,int $action_id):array;
+    public function getRolePermissions(array $roles_id, int $action_id): array;
 
 }

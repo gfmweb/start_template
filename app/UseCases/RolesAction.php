@@ -19,7 +19,7 @@ class RolesAction
     public static function newRoleAdd(string $role): array
     {
         $repositoryRole = app(RoleRepository::class);
-        $id =  $repositoryRole->addRole($role);
+        $id = $repositoryRole->addRole($role);
         $repositoryRoleUser = app(RoleUserRepositorry::class);
         $repositoryRoleUser->addUserRole(1, $id);
         return $repositoryRole->getAllRoles();

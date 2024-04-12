@@ -14,6 +14,6 @@ interface ActionRepository
 
     public function updateAction(int $id, string $name): void;
 
-    public function getActionByName(string $name):ActionsDTO|null;
+    public function getActionByName(string $name): ActionsDTO|null;
 
 }
