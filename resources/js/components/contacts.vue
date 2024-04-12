@@ -10,7 +10,7 @@ export default {
     methods:{
         cancelContact()
         {
-            document.getElementById('Email').value = null
+            document.getElementById('email').value = null
             document.getElementById('phone').value = null
             document.getElementById('telegram').value = null
             this.$emit('cancelContacts')
