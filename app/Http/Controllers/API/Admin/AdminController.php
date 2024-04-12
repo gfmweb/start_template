@@ -111,13 +111,17 @@ class AdminController extends Controller
             PermissionsAction::changePermissions($request->get('action_id'), $request->get('role_id'), $request->get('granted'));
             return response()->json(null, 200, [], 256);
         } catch (\Exception $e) {
-            return response()->json(null, 500, $e->getMessage());
+            return response()->json($e->getMessage(), 500);
         }
     }
 
     public function getActions()
     {
-        return response()->json(ActionsAction::getActions(),200,[],256);
+        try {
+            return response()->json(ActionsAction::getActions(), 200, [], 256);
+        } catch (\Exception $e) {
+            return response()->json($e->getMessage(), 500);
+        }
     }
 
     public function deleteAction(DeleteActionRequest $request):JsonResponse
