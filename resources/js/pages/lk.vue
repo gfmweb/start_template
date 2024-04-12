@@ -23,7 +23,7 @@ const messaging = getMessaging();
             if (permission === 'granted') {
                 getToken(messaging, { vapidKey: 'BHWxAyV9tsswoOgDkmgArYEwv8yw9JJtTMkf2b0kJt-J4570pm-mNNE3tf4ffl3N3SKxeQtaBfwvQY2HgvmQvk4' }).then((currentToken) => {
                     if (currentToken && storUser!==null) {
-                       axios.post('/api/v1/FireBase',{firebase:currentToken},{headers: {Authorization: `Bearer ${storUser.Token}`}})
+                       axios.post('/api/v1/fireBase',{firebase:currentToken},{headers: {Authorization: `Bearer ${storUser.Token}`}})
                            .then().catch(e=>{
                                console.log(e)
                        })
@@ -75,7 +75,7 @@ export default {
                 <div class="col-lg-3">
                     <div class="row justify-content-around">
                         <div class="col">
-                            <button class="btn btn-outline-primary" v-for="item in actions" v-on:click="act(item.url)">{{item.name}}</button>
+                            <button class="btn btn-outline-primary" v-for="item in actions" v-on:click="act(item.url)">{{item.name}}</button>&nbsp;
                         </div>
                     </div>
                 </div>

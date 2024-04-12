@@ -4,7 +4,7 @@ export default {
     name: "sitenav",
     methods: {
         logout() {
-            axios.post('/api/v1/logout', {}, {headers: {Authorization: `Bearer ${this.user.Token}`}})
+            axios.get('/api/v1/logout',  {headers: {Authorization: `Bearer ${this.user.Token}`}})
                 .then(res => {
                     this.$router.push('/login')
                 })
@@ -36,12 +36,8 @@ export default {
                         <router-link class="nav-link" v-if="!user.Auth" :to="'/'">Главная</router-link>
                     </li>
                     <li class="nav-item" v-if="user.Auth">
-                        <router-link class="nav-link" :to="'/lk'">Главная</router-link>
+                        <router-link class="nav-link" :to="'/lk'">Личный кабинет</router-link>
                     </li>
-                    <li class="nav-item" v-if="user.Auth">
-                        <router-link class="nav-link" :to="'/settings'">Настройки</router-link>
-                    </li>
-
                     <li class="nav-item" v-if="!user.Auth">
                         <router-link :to="'/login'" class="nav-link">Вход</router-link>
                     </li>
@@ -51,10 +47,18 @@ export default {
                     <li class="nav-item" v-if="isAdmin() == true">
                         <router-link :to="'/admin'" class="nav-link">Админ Панель</router-link>
                     </li>
+                    <li class="nav-item dropdown d-flex" v-if="user.Auth">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            {{user.Name}}
+                        </a>
+                        <ul class="dropdown-menu" >
+                            <li><router-link class="nav-link" :to="'/settings'">Настройки</router-link></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li ><span class="dropdown-item" role="button" v-on:click="logout">Выход</span></li>
+                        </ul>
+                    </li>
                 </ul>
-                <div class="d-flex" v-if="user.Auth">
-                    <button class="btn btn-outline-success" v-on:click="logout">Выход</button>
-                </div>
+
             </div>
         </div>
     </nav>

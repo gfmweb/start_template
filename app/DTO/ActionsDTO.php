@@ -2,7 +2,6 @@
 
 namespace App\DTO;
 
-use App\DTO\DTO;
 use App\Models\Action;
 use Illuminate\Database\Eloquent\Collection;
 

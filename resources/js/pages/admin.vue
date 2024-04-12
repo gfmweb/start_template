@@ -64,7 +64,7 @@ export default {
                 })
         },
         deleteRole(id) {
-            axios.post('/api/v1/admin/deleteRole', {id: id}, {headers: {Authorization: `Bearer ${this.user.Token}`}})
+            axios.delete('/api/v1/admin/deleteRole?id='+id, {headers: {Authorization: `Bearer ${this.user.Token}`}})
                 .then(res => {
                     this.roles = res.data
                 })
@@ -72,7 +72,7 @@ export default {
         confirmDeleteAction(data)
         {
             if(confirm('Вы действительно хотите удалить '+data.action)){
-                axios.post('/api/v1/admin/deleteAction', {id: data.id}, {headers: {Authorization: `Bearer ${this.user.Token}`}})
+                axios.delete('/api/v1/admin/deleteAction?id='+data.id, {headers: {Authorization: `Bearer ${this.user.Token}`}})
                     .then(res => {
                         this.actions = res.data
                     })

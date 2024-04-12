@@ -13,8 +13,10 @@ use Illuminate\Support\Facades\Auth;
 
 class TScontroller extends Controller
 {
+
     public function index(Request $request, UserRepository $repository):JsonResponse
     {
+
         try {
             $userRep = app(UserRepository::class);
             $user = $userRep->getUserByToken($request->bearerToken());
@@ -26,5 +28,10 @@ class TScontroller extends Controller
         }catch (\Exception $exception){
             return response()->json('Не отправлено', 422, [], 256);
         }
+    }
+
+    public function APIaction(Request $request):JsonResponse
+    {
+        return response()->json([$request->all(),$request->bearerToken()], 200);
     }
 }

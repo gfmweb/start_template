@@ -25,7 +25,7 @@ export default {
         },
         submitContacts: function (data)
         {
-            axios.post('/api/v1/user/updateContacts',data,{headers: {Authorization: `Bearer ${this.user.Token}`}})
+            axios.put('/api/v1/user/updateContacts',data,{headers: {Authorization: `Bearer ${this.user.Token}`}})
                 .then(this.active = null)
             this.$emit('refreshUser',{data:data})
         }

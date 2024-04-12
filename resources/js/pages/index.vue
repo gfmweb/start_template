@@ -16,7 +16,7 @@ export default {
     },
     methods: {
         getPush(){
-          axios.post('/api/v1/FireBaseGetMessage',{},{headers: {Authorization: `Bearer ${this.user.Token}`}})
+          axios.get('/api/v1/fireBaseGetMessage',{headers: {Authorization: `Bearer ${this.user.Token}`}})
         },
         logout() {
             this.$emit('logout')
@@ -52,7 +52,6 @@ export default {
                 </div>
             </div>
             <button class="btn btn-outline-primary "  v-on:click="getPush">Получить пуш в фокусе</button>
-
             <p>Для получения уведомления в backgroud сверните(но не закрывайте)  браузер. Отправьте POST запрос '/api/v1/FireBaseGetMessage' c BearerToken:<br/>
             {{this.user.Token}}</p>
         </section>
